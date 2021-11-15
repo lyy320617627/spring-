@@ -20,17 +20,6 @@ import java.util.Map;
 public class IOCTest {
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
     @Test
-    public void testImport(){
-        printBeans(annotationConfigApplicationContext);
-    }
-    private void printBeans( AnnotationConfigApplicationContext annotationConfigApplicationContext){
-        String[] beanDefinitionNames = annotationConfigApplicationContext.getBeanDefinitionNames();
-        for (String beanDefinitionName : beanDefinitionNames) {
-            System.out.println(beanDefinitionName);
-
-        }
-    }
-    @Test
     public void test03(){
         String[] beanNamesForType = annotationConfigApplicationContext.getBeanNamesForType(Person.class);
         ConfigurableEnvironment environment = annotationConfigApplicationContext.getEnvironment();
