@@ -1,6 +1,7 @@
 package com.lyy.config;
 
 import com.lyy.bean.Color;
+import com.lyy.bean.ColorFactoryBean;
 import com.lyy.bean.Person;
 import com.lyy.bean.Red;
 import com.lyy.condition.LinuxCondition;
@@ -19,8 +20,10 @@ import org.springframework.context.annotation.*;
 @Conditional({WindowsCondition.class
 })*/
 @Configuration
+
 @Import({Color.class, Red.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
 //导入组件，id默认是组件的全类名
+
 public class MainConfig2 {
     /**
      * See Also:
@@ -45,7 +48,7 @@ public class MainConfig2 {
      @Lazy
     @Bean("person")
     public Person person(){
-    return new Person("张三",25);
+    return new Person("张三",25,null);
     }
     /**
      * @Conditional({Conditional}):按照一定的条件进行判断，满足条件给容器中注册bean
@@ -56,13 +59,13 @@ public class MainConfig2 {
     })
     @Bean("bill")
     public Person person01(){
-        return new Person("Bill Gates",62);
+        return new Person("Bill Gates",62,null);
     }
     @Conditional({LinuxCondition.class
     })
     @Bean("linus")
     public Person person02(){
-      return new Person("linus",48);
+      return new Person("linus",48,null);
     }
     /**
      * 给容器中注册组件
@@ -72,6 +75,15 @@ public class MainConfig2 {
      *  1)@Import(要导入到容器中的组件)；容器中就会注册这个组件，id默认是全类名
      *  2）ImportSelector：返回需要导入的组件的全类名数组，
      *  3)ImportBeanDefinitionRegistrar:手动注册bean
+     * 4）使用Spring提供的FactoryBean（工厂Bean）方法
+     *    1）默认获取到的是工厂Bean调用getObject创建的对象
+     *    2）要获取工厂bean对象本身的实例需要在前面加上&
+     *
      *
      */
+    @Bean
+    public ColorFactoryBean colorFactoryBean(){
+        return new ColorFactoryBean();
+    }
+
 }

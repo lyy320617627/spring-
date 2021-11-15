@@ -39,6 +39,6 @@ public class MainConfig {
     //给容器中注册一个Bean；类型；返回值的类型，id：默认是方法名作为返回类型
     @Bean("person01")
       public Person person(){
-          return  new Person("lisi",20);
+          return  new Person("lisi",20,null);
       }
 }
