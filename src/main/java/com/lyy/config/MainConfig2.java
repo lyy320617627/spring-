@@ -39,7 +39,7 @@ public class MainConfig2 {
      @Lazy
     @Bean("person")
     public Person person(){
-    return new Person("张三",25);
+    return new Person("张三",25,null);
     }
     /**
      * @Conditional({Conditional}):按照一定的条件进行判断，满足条件给容器中注册bean
@@ -50,12 +50,12 @@ public class MainConfig2 {
     })
     @Bean("bill")
     public Person person01(){
-        return new Person("Bill Gates",62);
+        return new Person("Bill Gates",62,null);
     }
     @Conditional({LinuxCondition.class
     })
     @Bean("linus")
     public Person person02(){
-      return new Person("linus",48);
+      return new Person("linus",48,null);
     }
 }
