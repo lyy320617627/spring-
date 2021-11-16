@@ -1,6 +1,5 @@
 package com.lyy.test;
 
-import com.lyy.bean.Blue;
 import com.lyy.bean.Person;
 import com.lyy.config.MainConfig;
 import com.lyy.config.MainConfig2;
@@ -21,19 +20,6 @@ import java.util.Map;
 public class IOCTest {
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
     @Test
-    public void testImport(){
-        printBeans(annotationConfigApplicationContext);
-        Blue bean = annotationConfigApplicationContext.getBean(Blue.class);
-        System.out.println(bean);
-        //工厂Bean获取的是调用getObject创建的对象
-        Object colorFactoryBean = annotationConfigApplicationContext.getBean("colorFactoryBean");
-        Object colorFactoryBean2 = annotationConfigApplicationContext.getBean("colorFactoryBean");
-        System.out.println(colorFactoryBean.getClass());
-        System.out.println(colorFactoryBean==colorFactoryBean2);
-        Object bean1 = annotationConfigApplicationContext.getBean("&colorFactoryBean");
-        System.out.println(bean1.getClass());
-    }
-    @Test
     public void test03(){
         String[] beanNamesForType = annotationConfigApplicationContext.getBeanNamesForType(Person.class);
         ConfigurableEnvironment environment = annotationConfigApplicationContext.getEnvironment();
@@ -45,15 +31,9 @@ public class IOCTest {
         }
         Map<String, Person> persons = annotationConfigApplicationContext.getBeansOfType(Person.class);
         System.out.println(persons);
-
     }
 
-   public void printBeans(AnnotationConfigApplicationContext annotationConfigApplicationContext) {
-       String[] beanDefinitionNames = annotationConfigApplicationContext.getBeanDefinitionNames();
-       for (String beanDefinitionName : beanDefinitionNames) {
-           System.out.println(beanDefinitionName);
-       }
-   }
+
 
 
 
